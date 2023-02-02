@@ -1,4 +1,79 @@
-function addItem(item){
+
+let libros;
+// Aquí se debe cambiar el URL del servicio en el BackEnd
+const URL_MAIN ='/api/libros/';
+function addItems(list_items) {
+    fetch(URL_MAIN, {
+        method: 'get'
+    }).then(function(response) {
+        response.json().then(function (json) {
+            console.log(json);
+            console.log(json.length);
+            libros=json;
+            Array.from(json).forEach((p, index) => {
+                list_items.innerHTML += `
+                      
+    <div class = "col-xs-12 col-sm-12 col-md-9 col-lg-6 col-xl-4 pt-5" style="height:40rem;">
+       <div class="card h-100 m-5">
+          <img src="${p.url}" class="img-fluid card-img-top p-2" alt="image" style="height: 65%;">
+           <div class="row card-body"  style="align-items: center;">
+               <h5 class="card-title text-center">${p.titulo}</h5>
+               <p class="card-text text-center">${p.description}</p>
+               <div class="row align-items-center justify-content-evenly">
+                   <div class="col-4 text-center">
+                       <a href="#" title="Agregar a mi bolsa de compras" class="btn btn-primary"><i class="bi bi-basket"></i></a>
+                   </div>
+                   <div class="col-4 text-center">
+                   <p class="card-text fs-6">$ ${p.precio}</p>
+                   </div>
+               </div>
+           </div>
+       </div>
+    </div></br>  `;
+            }); // foreach
+        });//then
+    }).catch(function(err) {
+        console.log(err);
+    });
+    console.log(document.getElementById("list_items"));
+   
+}// addItems
+
+window.addEventListener("load", function (){
+    let div = document.getElementById("list_items");
+    addItems(div);
+   
+});
+
+function view(index) {
+    // console.log(index);
+    // console.table(productos[index]);
+    document.getElementById("productTitleModal").innerHTML=libros[index].titulo;
+    document.getElementById("productBodyModal").innerHTML=`${libros[index].autor}  <img class="bd-placeholder-img card-img-top" role="img" src="img/${libros[index].url}" />
+    <strong>$ ${libros[index].precio} MXN<strong>`;
+    $("#productModal").modal("show");
+}// view
+
+
+
+
+
+
+
+
+/***
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
+
+/*function addItem(item){
     const itemHTML = '<div class = "col-xs-12 col-sm-12 col-md-9 col-lg-6 col-xl-4 pt-5" style="height:40rem;">\n' +
     '   <div class="card h-100 m-5">\n' +
     '       <img src="'+item.img +'" class="img-fluid card-img-top p-2" alt="image" style="height: 65%;">\n' +
@@ -58,3 +133,4 @@ try {
     for (let index = 0; index < arreglolibros.length; index++) {
         addItem(arreglolibros[index])
     }
+    */

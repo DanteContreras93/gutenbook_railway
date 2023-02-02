@@ -11,16 +11,16 @@ function limpiar(){
  sessionStorage.removeItem('admin')
 }
 
-
+/*
 if( (sessionStorage.getItem('userlogged') != null) && sessionStorage.getItem('admin')!=null ){
   sesion= "Cerrar sesión";
     link = `<a class="nav-link" id="logi" aria-current="page" href="index.html" onclick="limpiar()" > <span id="spant"> ${sesion} </span> </a>`
-    superuser = `<li><a class="dropdown-item" href="registroLibro.html">Agregar Libro</a></li>`
+ } */
    
-}else if(sessionStorage.getItem('userlogged') != null) {
+ if(sessionStorage.getItem('userlogged') != null) {
   sesion= "Cerrar sesión";
   link = `<a class="nav-link" id="logi" aria-current="page" href="index.html" onclick="limpiar()" > <span id="spant"> ${sesion} </span> </a>`
-  superuser = ` `
+  superuser = `<li><a class="dropdown-item" href="registroLibro.html">Agregar Libro</a></li>`
 } else {
   sesion = "Ingresar";
    link = `<a class="nav-link my-1" id="logi" aria-current="page" href="registro.html"> <span id="spant"> ${sesion} </span> </a>`
@@ -86,18 +86,9 @@ footer.innerHTML =  `
        <div class="row  text-md-left">
          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
             <h5 class="text-uppercase mb-4 font-weight-bold ">Gutenbook</h5>
-            <p>"Mejorando día a día para ser la mejor librería del país"
+            <p>"Libros Misteriosos, Usados y Entregados Hoy: La librería que siempre te sorprende"
 
             </p>
-           </div>
-           <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-              <h5 class="text-uppercase mb-4 font-weight-bold">Enlaces</h5>
-              <p>
-                <a href="./registro.html" class="text-white" style="text-decoration: none;">Inicio de sesión</a>
-              </p>
-              <p>
-                
-              </p>
            </div>
 
             <div class="col-md-3 col-lg-2  col-xl-2 mx-auto mt-3">
@@ -114,6 +105,22 @@ footer.innerHTML =  `
               </p>
               <p>
                 <a href="./catalogo.html" class="text-white" style="text-decoration: none;">Catálogo</a>
+              </p>
+            </div>
+
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+              <h5 class="text-uppercase mb-4 font-weight-bold">Alianzas</h5>
+              <p>
+                <a href="#" class="text-white" style="text-decoration: none;">Rappi</a>
+              </p>
+              <p>
+              <a href="#" class="text-white" style="text-decoration: none;">Dvolada</a>
+              </p>
+              
+              <a href="#" class="text-white" style="text-decoration: none;">99Minutos</a>
+              </p>
+              <p>
+              <a href="#" class="text-white" style="text-decoration: none;">iVoy</a>
               </p>
             </div>
 
