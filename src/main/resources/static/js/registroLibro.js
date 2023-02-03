@@ -28,9 +28,9 @@ let btnReset = document.getElementById("btnReset");
 
 //Expresiones para validar//
 
-let regexTitulo = /^[a-zA-ZÀ-ÿ\s]{1,40}$/
+let regexTitulo = /^(?!\s*$).{0,700}$/
 let regexURL = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/
-let regexAutor = /(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})/
+let regexAutor = /^(?!\s*$).{0,700}$/
 let regexPrecio = /^\d+(,\d{3})*(\.\d{1,2})?$/;
 
 //funciones para validar//
@@ -61,7 +61,7 @@ function validarPrecio(){
 //funciones para validar//
 
 
-btnEnviar.addEventListener("click", function(event){
+btnEnviar.addEventListener("click", async function(event){
     event.preventDefault();
     clearTimeout(idTimeout);
 
@@ -106,37 +106,42 @@ btnEnviar.addEventListener("click", function(event){
             'success'
           )
     }
-        
-   /* let elemento = `{
+   /*     
+    let elemento = `{
         "name":"${titulo.value}",
         "img":"${img.value}",
         "description":"${autor.value}",
         "price":${parseFloat(precio.value)}
       }`;
-      
-      datos.push(JSON.parse(elemento)); */
-      
-		 let _datos = {
-		titulo: titulo.value,
-        autor: autor.value,
-        url: img.value,
-        genero: "",
-        anioPublicacion:0 ,
-        precio: parseFloat(precio.value),
-        description: "",
-        editorial: ""
-		}
-		
-		fetch('/api/libros/', {
-		  method: "POST",
-		  body: JSON.stringify(_datos),
-		  headers: {"Content-type": "application/json; charset=UTF-8"}
-		})
-		.then(response => response.json()) 
-		.then(json => console.log(json))
-		.catch(err => console.log(err));
+    console.log(elemento);
+    datos.push(JSON.parse(elemento));
+    localStorage.setItem("datos", JSON.stringify(datos));
+    */
     
+    
+		const response = await fetch('/api/libros/', {
+			method: 'POST',
+			headers: {
+			  'Accept': 'application/json',
+			  'Content-Type': 'application/json'
+			},
+			body: `{
+			   	"titulo": "${titulo.value}",
+				   "autor": "",
+				   "url": "${img.value}",
+				   "genero": "",
+				   "anioPublicacion": 0,
+		           "precio": "${precio.value}",
+				   "description": "${autor.value}",
+				   "editorial":""
+			  }`,
+			});
+			
+			response.json().then(data => {
+			  console.log(data);
+			});
    
+
 
 
     titulo.value = "";
