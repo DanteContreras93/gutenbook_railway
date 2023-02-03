@@ -11,11 +11,11 @@ let users = [];
 let pass
 let userlogged
 
-// Arreglo de usuarios
-//usuarios = new Map ();
+//Arreglo de usuarios
+usuarios = new Map ();
 
-//usuarios.set('admin',{"correo":"admin@gutenbook.com","tel":"5562441585", "contraseña":"P4$$w0rd"});
-//usuarios.set('pepito',{"correo":"pepepecas@gmailcom","tel":"5519451524", "contraseña":"Contraseña.123"});
+usuarios.set('admin',{"correo":"admin@gutenbook.com","tel":"5562441585", "contraseña":"P4$$w0rd"});
+usuarios.set('pepito',{"correo":"pepepecas@gmailcom","tel":"5519451524", "contraseña":"Contraseña.123"});
 
 
 signUpBtn.addEventListener('click', () => {

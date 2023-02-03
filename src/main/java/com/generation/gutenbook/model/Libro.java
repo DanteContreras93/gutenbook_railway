@@ -18,6 +18,7 @@ public class Libro {
 	@Column(nullable=false)
 	private String titulo;
 	private String autor;
+	@Column(length = 500)
 	private String url;
 	private String genero;
 	private Integer anioPublicacion;
